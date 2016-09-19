@@ -97,11 +97,18 @@ public class HomeController {
 		return "playerdashboard";
 	}
 
+	@RequestMapping(value = "Loginapi", method = RequestMethod.GET)
+	public String Loginthroughapi(HttpServletRequest request, Model model) {
+
+		return "Loginapi";
+	}
+	
 	@RequestMapping(value = "GameMakerInvitePlayers", method = RequestMethod.GET)
 	public String InvitePlayersClick(HttpServletRequest request, Model model) {
 
 		return "GameMakerInvitePlayers";
 	}
+	
 
 	@RequestMapping(value = "GameInvitations", method = RequestMethod.GET)
 	public String processGameInvitationsClick(HttpServletRequest request,
@@ -432,6 +439,11 @@ public class HomeController {
 		return "GotchaGamesCreateGame";
 	}
 
+	@RequestMapping(value = "FinishedInvitingPlayers", method = RequestMethod.GET)
+	public String FinishedInvitingPlayers(HttpServletRequest request, Model model) {
+		// navigation bar, brings to CreateGamePage
+		return "playerdashboard";
+	}
 	@RequestMapping(value = "gamecreation", method = RequestMethod.GET)
 	public String processAssignment(HttpServletRequest request,
 			HttpServletResponse response, Model model) {
@@ -529,6 +541,56 @@ public class HomeController {
 		return "Youhaveacceptedinviation";
 	}
 
+	
+	
+	@RequestMapping(value = "AddPlayerToPlayersTableTest", method = RequestMethod.GET)
+	public String AddPlayerToPlayersTableTest(HttpServletRequest request,
+			HttpServletResponse response, Model model) {
+		/*
+		 * The gamemaker has created a new game. They will now invite players
+		 * successfully added to players table.  This needs some work. 
+		 * Potentially add a counter if we need a player number.  I am not sure if we need a unique playernumber because we should have a unique googleid. 
+		 * If we don't then this code is sufficient.
+		 */
+		try {
+
+			String player1 = request.getParameter("player1");
+		
+			HttpSession session1 = request.getSession();
+			String gamename = (String) session1.getAttribute("gamename");
+			model.addAttribute("gamename", gamename);
+			//String[] ar = { player1, player2 };
+			ArrayList <String> invitedPlayers = new ArrayList <> ();
+			invitedPlayers.add(player1);
+			//
+			model.addAttribute("invitedPlayers", invitedPlayers);
+
+			Class.forName("com.mysql.jdbc.Driver");
+
+			Connection conn = DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/GameTestPlayerName", "root",
+					"admin");
+
+			String query1 = "INSERT INTO playertable1"
+					+ "(PlayerNumber,UserId,GameName,PlayerStatus) VALUES" + "(?,?,?,?)";
+
+			for (int i = 0; i < invitedPlayers.size(); i++) {
+				java.sql.PreparedStatement addPlayerToPlayersTable = conn
+						.prepareStatement(query1);
+				addPlayerToPlayersTable.setInt(1, 1);
+				addPlayerToPlayersTable.setString(2, player1);
+				addPlayerToPlayersTable.setString(3, gamename);
+				addPlayerToPlayersTable.setString(4, "inactive");
+				addPlayerToPlayersTable.execute();
+			}
+		} catch (Exception e) {
+			System.err.println("Got an exception!");
+			System.err.println(e.getMessage());
+		}
+
+		return "InvitePlayersPage";
+	}
+	
 	@RequestMapping(value = "AddPlayerToPlayersTable", method = RequestMethod.GET)
 	public String AddPlayersToTable(HttpServletRequest request,
 			HttpServletResponse response, Model model) {

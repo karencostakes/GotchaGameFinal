@@ -129,21 +129,18 @@ li a:hover {
 <br>
 <br>
 <br>
-<form action= "AddPlayerToPlayersTable" method ="get">
+<form action= "AddPlayerToPlayersTableTest" method ="get">
 Player 1 Username:<input type ="text" name="player1">
-<br>
-Player 2 Username: <input type ="date" name="player2">
-<br>
-
-
-
-
-<br>
-
-
-<input type = "submit"  value="Invite Players">
+<input type = "submit"  value="Submit to invite player">
 
 </form>
+<br>
+<br>
+<form action= "FinishedInvitingPlayers" method ="get">
+<input type = "submit"  value="Finished Inviting? Click Here!">
+
+</form>
+
 </p>
 
 </body>

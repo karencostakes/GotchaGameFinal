@@ -15,6 +15,12 @@
 	</properties>
 	<dependencies>
 		<!-- MySQL -->
+		 <dependency>
+      <groupId>com.google.apis</groupId>
+      <artifactId>google-api-services-plus</artifactId>
+      <version>v1-rev443-1.22.0</version>
+    </dependency>
+		
 		<dependency>
     		<groupId>mysql</groupId>
     		<artifactId>mysql-connector-java</artifactId>
