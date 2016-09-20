@@ -1060,7 +1060,17 @@ public class HomeController {
 				itemsArray.add(itm.get(i));
 				System.out.println(itm);
 			}
+			
+		/*	//NOW WE NEED TO GET DO A PREPARED STATEMENT SO WE ARE ONLY GETTING ACTIVE PLAYERS FROM SPECIFIC GAME
+			
+			String playerQuery = "Select UserId from playertable1 where PlayerStatus ==? && GameName ==?";
+			
+			java.sql.PreparedStatement playerQueryPS = cnn.prepareStatement(playerQuery);			
+			updateGameStatus.setString(1, "active");
+			updateGameStatus.setString(2, gameNameToStart);
+			System.out.println(playerQuery);
 
+			*/
 			String playerQuery = "select UserId from playertable1 where PlayerStatus = 'active'";
 			ResultSet playerNames = selectStatement.executeQuery(playerQuery);
 
@@ -1068,13 +1078,12 @@ public class HomeController {
 
 				String playerName = playerNames.getString("UserId");
 				userIDArray.add(playerName);
-				System.out.println(playerName);
 			}
 
 			for (i = 0; i < x; i++) {
 				target.add(userIDArray.get(i));
-				System.out.println(userIDArray);
 			}
+		
 
 			boolean arraysAreDifferent = false;
 
