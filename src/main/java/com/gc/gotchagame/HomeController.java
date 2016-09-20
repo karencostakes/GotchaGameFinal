@@ -1077,10 +1077,10 @@ public class HomeController {
 			ArrayList<String> userIDArray = new ArrayList<String>();
 			ArrayList<String> target = new ArrayList<String>();
 
-			int x = 3;
+	
 			// int x = CountOfPlayers.countPlayers();
 			int i = 0;
-			System.out.println(x);
+		
 
 			String locationsQuery = "select Locations from location;";
 			ResultSet locationSet = selectStatement
@@ -1094,7 +1094,7 @@ public class HomeController {
 			}
 			Collections.shuffle(lctn);
 
-			for (i = 0; i < x; i++) {
+			for (i = 0; i < numberOfActivePlayers; i++) {
 				locationsArray.add(lctn.get(i));
 				System.out.println(lctn);
 			}
@@ -1111,7 +1111,7 @@ public class HomeController {
 			}
 			Collections.shuffle(itm);
 
-			for (i = 0; i < x; i++) {
+			for (i = 0; i < numberOfActivePlayers; i++) {
 				itemsArray.add(itm.get(i));
 				System.out.println(itm);
 			}
@@ -1140,7 +1140,7 @@ public class HomeController {
 			
 			
 
-			for (i = 0; i < x; i++) {
+			for (i = 0; i < numberOfActivePlayers; i++) {
 				target.add(userIDArray.get(i));
 			}
 
@@ -1149,18 +1149,18 @@ public class HomeController {
 			Collections.shuffle(target);
 
 			while (arraysAreDifferent == false) {
-				for (i = 0; i < x; i++) {
+				for (i = 0; i <numberOfActivePlayers; i++) {
 					if (userIDArray.get(i).equalsIgnoreCase(target.get(i))) {
 						Collections.shuffle(target);
 						break;
 					}
 				}
-				if (i == x)
+				if (i == numberOfActivePlayers)
 					arraysAreDifferent = true;
 			}
 			while (arraysAreDifferent = true) {
 
-				for (i = 0; i < x; i++) {
+				for (i = 0; i < numberOfActivePlayers; i++) {
 					String query2 = "UPDATE playertable1 SET Target=?, Location=?, Item = ? WHERE UserId=?";
 					java.sql.PreparedStatement addAssignmentToPlayersTable = cnn
 							.prepareStatement(query2);
