@@ -419,7 +419,8 @@ public class HomeController {
 				model.addAttribute("gameName", gameName);
 
 				// Step 4: Check to see how many activeplayers are in the game
-
+				
+				//int numberOfActivePlayers;
 				query = "SELECT COUNT(*) FROM PlayerTable1 WHERE PlayerStatus=? AND GameName=?";
 				
 				java.sql.PreparedStatement ps3 = conn.prepareStatement(query);
@@ -506,24 +507,10 @@ public class HomeController {
 						System.out.println(itemsArray);
 					}
 
-					/*
-					 * //NOW WE NEED TO GET DO A PREPARED STATEMENT SO WE ARE
-					 * ONLY GETTING ACTIVE PLAYERS FROM SPECIFIC GAME
-					 * 
-					 * String playerQuery =
-					 * "Select UserId from playertable1 where PlayerStatus ==? && GameName ==?"
-					 * ;
-					 * 
-					 * java.sql.PreparedStatement playerQueryPS =
-					 * cnn.prepareStatement(playerQuery);
-					 * updateGameStatus.setString(1, "active");
-					 * updateGameStatus.setString(2, gameNameToStart);
-					 * System.out.println(playerQuery);
-					 */
 					
-		
-					
-					
+					 //NOW WE NEED TO GET DO A PREPARED STATEMENT SO WE ARE
+					// ONLY GETTING ACTIVE PLAYERS FROM SPECIFIC GAME
+			
 					String playerQuery = "Select UserId from playertable1 where PlayerStatus =? AND GameName=?";
 
 					java.sql.PreparedStatement ps1 = conn.prepareStatement(playerQuery);
@@ -767,43 +754,7 @@ public class HomeController {
 		return "InvitePlayersPage";
 	}
 
-	/*
-	 * @RequestMapping(value = "AddPlayerToPlayersTable", method =
-	 * RequestMethod.GET) public String AddPlayersToTable(HttpServletRequest
-	 * request, HttpServletResponse response, Model model) {
-	 * 
-	 * The gamemaker has created a new game. They will now invite players
-	 * successfully added to players table
-	 * 
-	 * try {
-	 * 
-	 * String player1 = request.getParameter("player1"); String player2 =
-	 * request.getParameter("player2"); HttpSession session1 =
-	 * request.getSession(); String gamename = (String)
-	 * session1.getAttribute("gamename"); model.addAttribute("gamename",
-	 * gamename); String[] ar = { player1, player2 };
-	 * model.addAttribute("invitedPlayers", ar);
-	 * 
-	 * Class.forName("com.mysql.jdbc.Driver");
-	 * 
-	 * Connection conn = DriverManager.getConnection(
-	 * "jdbc:mysql://localhost:3306/GameTestPlayerName", "root", "admin");
-	 * 
-	 * String query1 = "INSERT INTO playertable1" +
-	 * "(PlayerNumber,UserId,GameName,PlayerStatus) VALUES" + "(?,?,?,?)";
-	 * 
-	 * for (int i = 0; i < ar.length; i++) { java.sql.PreparedStatement
-	 * addPlayerToPlayersTable = conn .prepareStatement(query1);
-	 * addPlayerToPlayersTable.setInt(1, i + 2);
-	 * addPlayerToPlayersTable.setString(2, ar[i]);
-	 * addPlayerToPlayersTable.setString(3, gamename);
-	 * addPlayerToPlayersTable.setString(4, "inactive");
-	 * addPlayerToPlayersTable.execute(); } } catch (Exception e) {
-	 * System.err.println("Got an exception!");
-	 * System.err.println(e.getMessage()); }
-	 * 
-	 * return "StartGamePage"; }
-	 */
+
 	@RequestMapping(value = "StartGamePage", method = RequestMethod.GET)
 	public String playerClicksonStartGame(HttpServletRequest request,
 			HttpServletResponse response, Model model) {
@@ -1083,6 +1034,7 @@ public class HomeController {
 	{
 
 		try {
+			int numberOfActivePlayers;
 
 			HttpSession session = request.getSession();
 			String gameNameToStart = (String) session
@@ -1090,8 +1042,25 @@ public class HomeController {
 			Class.forName("com.mysql.jdbc.Driver");
 			System.out.println(gameNameToStart);
 			Connection cnn = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/GameTestPlayerName", "root",
-					"admin");
+					"jdbc:mysql://localhost:3306/GameTestPlayerName", "root","admin");
+		
+			
+			String query = "SELECT COUNT(*) FROM PlayerTable1 WHERE PlayerStatus=? AND GameName=?";
+			
+			java.sql.PreparedStatement ps3 = cnn.prepareStatement(query);
+			ps3.setString(1, "active");
+			ps3.setString(2, gameNameToStart);
+			System.out.println(ps3);
+
+			// process the results
+			ResultSet rs3 = ps3.executeQuery();
+
+			rs3.next();
+			numberOfActivePlayers = rs3.getInt(1);
+			//TEST of number of active players
+			System.out.println("Active Players Left in Game "
+					+ numberOfActivePlayers);
+
 
 			String query1 = "UPDATE gametable1 SET GameStatus='active' WHERE GameName=?";
 
@@ -1147,27 +1116,29 @@ public class HomeController {
 				System.out.println(itm);
 			}
 
-			/*
-			 * //NOW WE NEED TO GET DO A PREPARED STATEMENT SO WE ARE ONLY
-			 * GETTING ACTIVE PLAYERS FROM SPECIFIC GAME
-			 * 
-			 * String playerQuery =
-			 * "Select UserId from playertable1 where PlayerStatus ==? && GameName ==?"
-			 * ;
-			 * 
-			 * java.sql.PreparedStatement playerQueryPS =
-			 * cnn.prepareStatement(playerQuery); updateGameStatus.setString(1,
-			 * "active"); updateGameStatus.setString(2, gameNameToStart);
-			 * System.out.println(playerQuery);
-			 */
-			String playerQuery = "select UserId from playertable1 where PlayerStatus = 'active'";
-			ResultSet playerNames = selectStatement.executeQuery(playerQuery);
+			
+			  //NOW WE NEED TO GET DO A PREPARED STATEMENT SO WE ARE ONLY
+			 //GETTING ACTIVE PLAYERS FROM SPECIFIC GAME
+		
+			
+			
+			String playerQuery = "Select UserId from playertable1 where PlayerStatus =? AND GameName=?";
 
-			while (playerNames.next()) {
+			java.sql.PreparedStatement ps1 = cnn.prepareStatement(playerQuery);
+			ps1.setString(1,"active");
+			ps1.setString(2, gameNameToStart);
+			System.out.println(playerQuery);
 
-				String playerName = playerNames.getString("UserId");
+			// process the results
+			ResultSet rs1 = ps1.executeQuery();
+			System.out.println(ps1);
+
+			while (rs1.next()) {
+				String playerName = rs1.getString("UserId");
 				userIDArray.add(playerName);
 			}
+			
+			
 
 			for (i = 0; i < x; i++) {
 				target.add(userIDArray.get(i));
@@ -1190,9 +1161,9 @@ public class HomeController {
 			while (arraysAreDifferent = true) {
 
 				for (i = 0; i < x; i++) {
-					String query = "UPDATE playertable1 SET Target=?, Location=?, Item = ? WHERE UserId=?";
+					String query2 = "UPDATE playertable1 SET Target=?, Location=?, Item = ? WHERE UserId=?";
 					java.sql.PreparedStatement addAssignmentToPlayersTable = cnn
-							.prepareStatement(query);
+							.prepareStatement(query2);
 					addAssignmentToPlayersTable.setString(1, target.get(i));
 					addAssignmentToPlayersTable.setString(2,
 							locationsArray.get(i));
