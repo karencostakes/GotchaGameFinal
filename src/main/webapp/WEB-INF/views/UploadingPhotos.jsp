@@ -14,7 +14,20 @@
  
  
 		<input type="submit" value="Upload"> Press here to upload the file!
+	
+	<br>
+	<br>
+	
+	<h1>AFTER YOU HAVE UPLOADED YOUR GOTCHA PROOF, Click Gotcha! Button to confirm your Gotcha!</h1>
 	</form>	
+	
+	
+	<form action= "GotchaShuffleAssignments" method ="get">
+<input type = "submit"  value="GOTCHA!">
+
+</form>
+	
+	
 </body>
 </html>
 

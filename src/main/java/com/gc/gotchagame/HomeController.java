@@ -13,6 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.http.HttpHost;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -117,6 +123,50 @@ public class HomeController {
 		return "GameInvitations";
 	}
 
+/*	@RequestMapping(value="TestingTextApi", method = RequestMethod.GET)
+	public String getWeather(Model model)
+	{try
+		{HttpClient http = HttpClientBuilder.create().build();
+	
+	
+	//address that we want to call: I am going to access this website at this port using this protocol
+		HttpHost host = new HttpHost ("https://messagebird-sms-gateway.p.mashape.com");
+		//which resource do you want to obtain at this page
+		HttpGet getPage = new HttpGet ("/sms");
+		//execute Http request and get the http response back
+		HttpResponse resp = http.execute(host, getPage);
+				
+		String result = EntityUtils.toString(resp.getEntity());
+		model.addAttribute("pagedata", result);
+		
+		
+		HttpResponse<String> response = Unirest.post("https://messagebird-sms-gateway.p.mashape.com/sms?password=&username=")
+				.header("X-Mashape-Key", "<required>")
+				.header("Content-Type", "application/x-www-form-urlencoded")
+				.header("Accept", "text/plain")
+				.field("body", "This is a gsm 7-bit test message.")
+				.field("destination", "31600000001,31600000002")
+				.field("dlr_url", "http://www.example.com/dlr-messagebird.php")
+				.field("reference", "268431687")
+				.field("replacechars", false)
+				.field("sender", "MessageBird")
+				.field("timestamp", 201308020025)
+				.field("type", "normal")
+				.asString();
+	
+	
+	}
+		catch (Exception e)
+		{
+		
+		return "errorpage";
+	
+		}
+	return "apitestsms";
+	}
+
+	*/
+	
 	@RequestMapping(value = "ActiveGameShowAssignment", method = RequestMethod.GET)
 	public String playerClicksonActiveGames(HttpServletRequest request, HttpServletResponse response, Model model) {
 		// when player clicks on active game, this page will show an assignment
@@ -439,12 +489,14 @@ public class HomeController {
 		return "GotchaGamesCreateGame";
 	}
 	
-	@RequestMapping(value = "UploadingPhotos", method = RequestMethod.GET)
+
+	
+	@RequestMapping(value = "GotchaGoToUploadPhotos", method = RequestMethod.GET)
 	public String GoToUploadPicturesPage(HttpServletRequest request, Model model) {
 		// navigation bar, brings to CreateGamePage
 		return "UploadingPhotos";
 	}
-
+	
 	@RequestMapping(value = "FinishedInvitingPlayers", method = RequestMethod.GET)
 	public String FinishedInvitingPlayers(HttpServletRequest request, Model model) {
 		// navigation bar, brings to CreateGamePage
@@ -578,15 +630,15 @@ public class HomeController {
 					"admin");
 
 			String query1 = "INSERT INTO playertable1"
-					+ "(PlayerNumber,UserId,GameName,PlayerStatus) VALUES" + "(?,?,?,?)";
+					+ "(UserId,GameName,PlayerStatus) VALUES" + "(?,?,?)";
 
 			for (int i = 0; i < invitedPlayers.size(); i++) {
 				java.sql.PreparedStatement addPlayerToPlayersTable = conn
 						.prepareStatement(query1);
-				addPlayerToPlayersTable.setInt(1, 1);
-				addPlayerToPlayersTable.setString(2, player1);
-				addPlayerToPlayersTable.setString(3, gamename);
-				addPlayerToPlayersTable.setString(4, "inactive");
+				
+				addPlayerToPlayersTable.setString(1, player1);
+				addPlayerToPlayersTable.setString(2, gamename);
+				addPlayerToPlayersTable.setString(3, "inactive");
 				addPlayerToPlayersTable.execute();
 			}
 		} catch (Exception e) {
@@ -597,13 +649,13 @@ public class HomeController {
 		return "InvitePlayersPage";
 	}
 	
-	@RequestMapping(value = "AddPlayerToPlayersTable", method = RequestMethod.GET)
+	/*@RequestMapping(value = "AddPlayerToPlayersTable", method = RequestMethod.GET)
 	public String AddPlayersToTable(HttpServletRequest request,
 			HttpServletResponse response, Model model) {
-		/*
+		
 		 * The gamemaker has created a new game. They will now invite players
 		 * successfully added to players table
-		 */
+		 
 		try {
 
 			String player1 = request.getParameter("player1");
@@ -639,7 +691,7 @@ public class HomeController {
 
 		return "StartGamePage";
 	}
-	
+	*/
 	@RequestMapping(value = "StartGamePage", method = RequestMethod.GET)
 	public String playerClicksonStartGame(HttpServletRequest request, HttpServletResponse response, Model model) {
 	//when player clicks on StartGamePage, this page will show a start Game option ONLY IF

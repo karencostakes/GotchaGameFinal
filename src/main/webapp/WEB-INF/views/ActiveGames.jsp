@@ -133,7 +133,7 @@ li a:hover {
 <h3>${location} </h3>
 <h1>${nullmessage} </h1>
 
-<form action= "GotchaShuffleAssignments" method ="get">
+<form action= "GotchaGoToUploadPhotos" method ="get">
 <input type = "submit"  value="GOTCHA!">
 
 </form>
