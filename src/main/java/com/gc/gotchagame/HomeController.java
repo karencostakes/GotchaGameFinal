@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Locale;
 
@@ -82,11 +83,16 @@ public class HomeController {
 			session.setAttribute("userNameSession", userNameSession);
 
 			Class.forName("com.mysql.jdbc.Driver");
-
-			Connection conn = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/GameTestPlayerName", "root",
+//This is connecting to our RDBS.  Deeann is working on changing the password.
+		/*	Connection conn = DriverManager.getConnection(
+					"jdbc:mysql://aaobnl8nl3m402.cmwzwe1wsipz.us-east-1.rds.amazonaws.com:3306/GameTestPlayerName", "DUhlarik",
+					"PASSWORD");
+*/
+			
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/GameTestPlayerName", "root",
 					"admin");
-
+			
+			
 			String query1 = "INSERT INTO usernametable" + "(UserName) VALUES"
 					+ "(?)";
 
@@ -984,31 +990,127 @@ public class HomeController {
 	 * that are attached to game in active status
 	 */
 	{
-
+		
 		try {
-
+			
 			HttpSession session = request.getSession();
 			String gameNameToStart = (String) session.getAttribute("gamethatwillbeupdatedtoactive");
 			Class.forName("com.mysql.jdbc.Driver");
-
-			Connection conn = DriverManager.getConnection(
+			System.out.println(gameNameToStart);
+			Connection cnn = DriverManager.getConnection(
 					"jdbc:mysql://localhost:3306/GameTestPlayerName", "root",
 					"admin");
 
-			String query1 = "UPDATE gametable1 SET GameStatus='active' WHERE GameName=?";
-
-			java.sql.PreparedStatement updateGameStatus = conn
-					.prepareStatement(query1);
 			
+			
+			
+			String query1 = "UPDATE gametable1 SET GameStatus='active' WHERE GameName=?";
+		
+			java.sql.PreparedStatement updateGameStatus = cnn.prepareStatement(query1);			
 			updateGameStatus.setString(1, gameNameToStart);
 			System.out.println(updateGameStatus);
 			updateGameStatus.execute();
+			
+			
+			
+			
 
+			Statement selectStatement = cnn.createStatement();
+
+			ArrayList<String> itemsArray = new ArrayList<String>();
+			ArrayList<String> locationsArray = new ArrayList<String>();
+			ArrayList<String> userIDArray = new ArrayList<String>();
+			ArrayList<String> target = new ArrayList<String>();
+
+			int x =3;
+			//int x = CountOfPlayers.countPlayers();
+			int i = 0;
+			System.out.println(x);
+			
+			
+			String locationsQuery = "select Locations from location;";
+			ResultSet locationSet = selectStatement.executeQuery(locationsQuery);
+
+			ArrayList<String> lctn = new ArrayList<String>();
+			while (locationSet.next()) {
+
+				String location = locationSet.getString("Locations");
+				lctn.add(location);
+			}
+			Collections.shuffle(lctn);
+
+			for (i = 0; i < x; i++) {
+				locationsArray.add(lctn.get(i));
+				System.out.println(lctn);
+			}
+
+			String itemsQuery = "select Item from Items;";
+			ResultSet itemSet = selectStatement.executeQuery(itemsQuery);
+
+			ArrayList<String> itm = new ArrayList<String>();
+			while (itemSet.next()) {
+
+				String item = itemSet.getString("Item");
+				itm.add(item);
+				
+			}
+			Collections.shuffle(itm);
+
+			for (i = 0; i < x; i++) {
+				itemsArray.add(itm.get(i));
+				System.out.println(itm);
+			}
+
+			String playerQuery = "select UserId from playertable1 where PlayerStatus = 'active'";
+			ResultSet playerNames = selectStatement.executeQuery(playerQuery);
+
+			while (playerNames.next()) {
+
+				String playerName = playerNames.getString("UserId");
+				userIDArray.add(playerName);
+				System.out.println(playerName);
+			}
+
+			for (i = 0; i < x; i++) {
+				target.add(userIDArray.get(i));
+				System.out.println(userIDArray);
+			}
+
+			boolean arraysAreDifferent = false;
+
+			Collections.shuffle(target);
+			
+			while (arraysAreDifferent == false) {
+				for (i = 0; i < x; i++) {
+					if (userIDArray.get(i).equalsIgnoreCase(target.get(i))) {
+						Collections.shuffle(target);
+						break;
+					}
+				}
+				if (i == x)
+					arraysAreDifferent = true;
+			}
+			while (arraysAreDifferent = true) {
+
+				for (i = 0; i < x; i++) {
+					String query = "UPDATE playertable1 SET Target=?, Location=?, Item = ? WHERE UserId=?";
+					java.sql.PreparedStatement addAssignmentToPlayersTable = cnn.prepareStatement(query);
+					addAssignmentToPlayersTable.setString(1, target.get(i));
+					addAssignmentToPlayersTable.setString(2, locationsArray.get(i));
+					addAssignmentToPlayersTable.setString(3, itemsArray.get(i));
+					addAssignmentToPlayersTable.setString(4, userIDArray.get(i));
+					addAssignmentToPlayersTable.execute();
+				}
+			}
 		} catch (Exception e) {
-			System.err.println("Got an exception!");
-			System.err.println(e.getMessage());
+			
 		}
-
-		return "YouStartedAGame";
+	
+	return "YouStartedAGame";
 	}
 }
+		
+		
+		
+		
+
