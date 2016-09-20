@@ -421,7 +421,7 @@ public class HomeController {
 				// Step 4: Check to see how many activeplayers are in the game
 
 				query = "SELECT COUNT(*) FROM PlayerTable1 WHERE PlayerStatus=? AND GameName=?";
-
+				
 				java.sql.PreparedStatement ps3 = conn.prepareStatement(query);
 				ps3.setString(1, "active");
 				ps3.setString(2, gameName);
@@ -432,10 +432,12 @@ public class HomeController {
 
 				rs3.next();
 				numberOfActivePlayers = rs3.getInt(1);
-
+				//TEST of number of active players
 				System.out.println("Active Players Left in Game "
 						+ numberOfActivePlayers);
 
+				
+			//We want to see how many active players there are.  If there are 2 or more, we need to do a reshuffle	
 				if (numberOfActivePlayers > 1) {
 					// We need to reshuffle assignments
 					model.addAttribute("messagenewassignments",
@@ -452,6 +454,10 @@ public class HomeController {
 
 					Statement selectStatement = cnn.createStatement();
 
+					//We are going to pull all items, from items table.  
+					//We are going to pull all locations from locations table.
+					//We are going to pull all active users players and set as targets
+					
 					ArrayList<String> itemsArray = new ArrayList<String>();
 					ArrayList<String> locationsArray = new ArrayList<String>();
 					ArrayList<String> userIDArray = new ArrayList<String>();
@@ -459,12 +465,14 @@ public class HomeController {
 
 					// int x = CountOfPlayers.countPlayers();
 
-					System.out.println(numberOfActivePlayers);
+					System.out.println("The number of active players in the game:" + numberOfActivePlayers);
 
 					String locationsQuery = "select Locations from location;";
 					ResultSet locationSet = selectStatement
 							.executeQuery(locationsQuery);
 
+					
+				
 					ArrayList<String> lctn = new ArrayList<String>();
 					while (locationSet.next()) {
 
@@ -476,7 +484,7 @@ public class HomeController {
 
 					for (int i = 0; i < numberOfActivePlayers; i++) {
 						locationsArray.add(lctn.get(i));
-						System.out.println(lctn);
+						System.out.println(locationsArray);
 					}
 
 					String itemsQuery = "select Item from Items;";
@@ -488,13 +496,14 @@ public class HomeController {
 
 						String item = itemSet.getString("Item");
 						itm.add(item);
+						
 
 					}
 					Collections.shuffle(itm);
 
 					for (int i = 0; i < numberOfActivePlayers; i++) {
 						itemsArray.add(itm.get(i));
-						System.out.println(itm);
+						System.out.println(itemsArray);
 					}
 
 					/*
@@ -511,63 +520,70 @@ public class HomeController {
 					 * updateGameStatus.setString(2, gameNameToStart);
 					 * System.out.println(playerQuery);
 					 */
-					String playerQuery = "select UserId from playertable1 where PlayerStatus = 'active'";
-					ResultSet playerNames = selectStatement
-							.executeQuery(playerQuery);
+					
+		
+					
+					
+					String playerQuery = "Select UserId from playertable1 where PlayerStatus =? AND GameName=?";
 
-					while (playerNames.next()) {
+					java.sql.PreparedStatement ps1 = conn.prepareStatement(playerQuery);
+					ps1.setString(1,"active");
+					ps1.setString(2, gameName);
+					System.out.println(playerQuery);
 
-						String playerName = playerNames.getString("UserId");
+					// process the results
+					ResultSet rs1 = ps1.executeQuery();
+					System.out.println(ps1);
+
+					while (rs1.next()) {
+						String playerName = rs1.getString("UserId");
 						userIDArray.add(playerName);
 					}
+			
 
 					for (int i = 0; i < numberOfActivePlayers; i++) {
 						target.add(userIDArray.get(i));
+						System.out.println(target);
 					}
 
 					boolean arraysAreDifferent = false;
 
 					Collections.shuffle(target);
-
+					int i;
 					while (arraysAreDifferent == false) {
-						for (int i = 0; i < numberOfActivePlayers - 1; i++) {
-							if (userIDArray.get(i).equalsIgnoreCase(
-									target.get(i))) {
+						for (i = 0; i < numberOfActivePlayers; i++) {
+							if (userIDArray.get(i).equalsIgnoreCase(target.get(i))) {
 								Collections.shuffle(target);
 								break;
 							}
 						}
-
-						if (0 == numberOfActivePlayers)
+						if (i == numberOfActivePlayers)
 							arraysAreDifferent = true;
 					}
 					while (arraysAreDifferent = true) {
-						String query2 = "";
-						for (int i = 0; i < numberOfActivePlayers - 1; i++) {
-							query = "UPDATE playertable1 SET Target=?, Location=?, Item = ? WHERE UserId=?";
-							java.sql.PreparedStatement addAssignmentToPlayersTable = cnn
-									.prepareStatement(query2);
-							addAssignmentToPlayersTable.setString(1,
-									target.get(i));
-							addAssignmentToPlayersTable.setString(2,
-									locationsArray.get(i));
-							addAssignmentToPlayersTable.setString(3,
-									itemsArray.get(i));
-							addAssignmentToPlayersTable.setString(4,
-									userIDArray.get(i));
+
+						for (i = 0; i < numberOfActivePlayers; i++) {
+							String queryUpdatePlayers = "UPDATE playertable1 SET Target=?, Location=?, Item = ? WHERE UserId=?";
+							java.sql.PreparedStatement addAssignmentToPlayersTable = cnn.prepareStatement(queryUpdatePlayers);
+							addAssignmentToPlayersTable.setString(1, target.get(i));
+							addAssignmentToPlayersTable.setString(2, locationsArray.get(i));
+							addAssignmentToPlayersTable.setString(3, itemsArray.get(i));
+							addAssignmentToPlayersTable.setString(4, userIDArray.get(i));
 							addAssignmentToPlayersTable.execute();
 						}
 					}
+					
 
-				} else {
+					}
+				else {
 					// If there is only 1 active player less, the person who
 					// pressed gotcha is a winner
 					model.addAttribute("winner", "We have a winner!");
 
 				}
-
-			}
-
+					
+					}
+						
 			catch (Exception e) {
 				System.err.println("Got an exception!");
 				System.err.println(e.getMessage());
