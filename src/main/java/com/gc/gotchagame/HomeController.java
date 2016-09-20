@@ -438,6 +438,12 @@ public class HomeController {
 		// navigation bar, brings to CreateGamePage
 		return "GotchaGamesCreateGame";
 	}
+	
+	@RequestMapping(value = "UploadingPhotos", method = RequestMethod.GET)
+	public String GoToUploadPicturesPage(HttpServletRequest request, Model model) {
+		// navigation bar, brings to CreateGamePage
+		return "UploadingPhotos";
+	}
 
 	@RequestMapping(value = "FinishedInvitingPlayers", method = RequestMethod.GET)
 	public String FinishedInvitingPlayers(HttpServletRequest request, Model model) {

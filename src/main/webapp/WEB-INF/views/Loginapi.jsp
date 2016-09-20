@@ -19,7 +19,6 @@
         console.log('LastName: ' + profile.getLastName());
         console.log("Image URL: " + profile.getImageUrl());
         console.log("Email: " + profile.getEmail());
-
         // The ID token to pass to back end:
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("ID Token: " + id_token);
