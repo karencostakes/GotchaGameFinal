@@ -86,41 +86,12 @@ li a:hover {
 </header>
 <ul>
 
-<li><form action="GameOverview" method="get">
+<li><form action="PrettyStart" method="get">
 		<br> 
-		<br> <input type="submit" align="center" value="Game Overview">
+		<br> <input type="submit" align="center" value="Home">
 
 	</form></li>
-      <li><form action="playerdashboard" method="get">
-		<br> 
-		<br> <input type="submit" align="center" value="Player Dashboard">
-
-	</form></li>
-  <li><form action="GotchaGamesCreateGame" method="get">
-		<br> 
-		<br> <input type="submit" align="center" value="Create Game">
-
-	</form></li>
-	
-  <li><form action="StartGamePageTest" method="get">
-		<br> 
-		<br> <input type="submit" align="center" value="Start Created Game">
-
-	</form></li>
-  
-    <li><form action="ActiveGameShowAssignment" method="get">
-		<br> 
-		<br> <input type="submit" align="center" value="Active Games">
-
-	</form></li> 
-
-  <li><form action="GameInvitationPage" method="get">
-		<br> 
-		<br> <input type="submit" align="center" value="GameInvitationPage">
-
-	</form></li>
-	
-
+    
 
 </ul>
 
@@ -130,17 +101,9 @@ li a:hover {
 <br>
 <br>
 <form action= "gamecreation" method ="get">
-Game Name(Please Start with a Hashtag):<input type ="text" name="gamename">
+Enter an awesome Game Name:<input type ="text" name="gamename">
 <br>
-Start Date (enter date as mm/dd/yyyy): <input type ="date" name="startdate">
 <br>
-End Date (enter date as mm/dd/yyyy):<input type ="date" name="enddate">
-<br>
-
-
-<br>
-
-
 <input type = "submit"  value="Submit Game">
 
 </form>
