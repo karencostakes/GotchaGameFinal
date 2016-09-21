@@ -19,25 +19,15 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
 	<style>
 
 body
-{background-image: url("http://www.recettes-de-cuisines.com/wp-content/plugins/wp-o-matic/cache/7b51d_photodune-2487584-white-wood-background-m.jpg")
+{background-image: url("https://i.imgsafe.org/2fd91412db.png")
 
 
 }
 
-header, footer {exam
 
-    padding: .1em;
-    color: black;
-    background-color:  white;
-    clear: left;
-    text-align: left;
-    font-family: "courier new";
-font-size: 25px;
-}
 
 p {
 
@@ -47,13 +37,7 @@ font-family: "courier new";
 font-size: 30px;
 }
 
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}
+
 
 li {
     float: left;
@@ -102,6 +86,16 @@ li a:hover {
 <h1>You started your game ${gametostart}! </h1>
 <h3>You will see your assignment on the "Active Games" Page.  Let the Gotchaing begin!</h3>
 
+<ul>
+
+<li><form action="PrettyStart" method="get">
+		<br> 
+		<br> <input type="submit" align="center" value="Home">
+
+	</form></li>
+    
+
+</ul>
 
 
 </body>

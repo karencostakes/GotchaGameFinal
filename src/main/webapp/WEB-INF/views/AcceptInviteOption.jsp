@@ -20,24 +20,16 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+
 	<style>
 
 body
-{background-image: url("http://www.recettes-de-cuisines.com/wp-content/plugins/wp-o-matic/cache/7b51d_photodune-2487584-white-wood-background-m.jpg")
+{background-image: url("https://i.imgsafe.org/2fd91412db.png")
 
 
 }
 
-header, footer {exam
 
-    padding: .1em;
-    color: black;
-    background-color:  white;
-    clear: left;
-    text-align: left;
-    font-family: "courier new";
-font-size: 25px;
-}
 
 p {
 
@@ -47,13 +39,7 @@ font-family: "courier new";
 font-size: 30px;
 }
 
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}
+
 
 li {
     float: left;
@@ -83,45 +69,7 @@ li a:hover {
 
 
 </header>
-<ul>
 
-<li><form action="GameOverview" method="get">
-		<br> 
-		<br> <input type="submit" align="center" value="Game Overview">
-
-	</form></li>
-      <li><form action="playerdashboard" method="get">
-		<br> 
-		<br> <input type="submit" align="center" value="Player Dashboard">
-
-	</form></li>
-  <li><form action="GotchaGamesCreateGame" method="get">
-		<br> 
-		<br> <input type="submit" align="center" value="Create Game">
-
-	</form></li>
-	
-  <li><form action="StartGamePageTest" method="get">
-		<br> 
-		<br> <input type="submit" align="center" value="Start Created Game">
-
-	</form></li>
-  
-    <li><form action="ActiveGameShowAssignment" method="get">
-		<br> 
-		<br> <input type="submit" align="center" value="Active Games">
-
-	</form></li> 
-
-  <li><form action="GameInvitationPage" method="get">
-		<br> 
-		<br> <input type="submit" align="center" value="GameInvitationPage">
-
-	</form></li>
-	
-
-
-</ul>
 
 </header>
 <h1> ${AcceptGame}   </h1>
@@ -132,7 +80,11 @@ li a:hover {
 
 <!--  <button onclick="updatePlayerToActive">Accept Invitation</button>-->
 
+<li><form action="PrettyStart" method="get">
+		<br> 
+		<br> <input type="submit" align="center" value="Home">
 
+	</form></li>
 </body>
 
 </html>

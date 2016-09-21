@@ -24,21 +24,12 @@
 	<style>
 
 body
-{background-image: url("http://www.recettes-de-cuisines.com/wp-content/plugins/wp-o-matic/cache/7b51d_photodune-2487584-white-wood-background-m.jpg")
+{background-image: url("https://i.imgsafe.org/2fd91412db.png")
 
 
 }
 
-header, footer {exam
 
-    padding: .1em;
-    color: black;
-    background-color:  white;
-    clear: left;
-    text-align: left;
-    font-family: "courier new";
-font-size: 25px;
-}
 
 p {
 
@@ -48,13 +39,7 @@ font-family: "courier new";
 font-size: 30px;
 }
 
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}
+
 
 li {
     float: left;
@@ -84,15 +69,6 @@ li a:hover {
 
 
 </header>
-<ul>
-<li><form action="PrettyStart" method="get">
-		<br> 
-		<br> <input type="submit" align="center" value="Home">
-
-	</form></li>
-
-
-</ul>
 
 </header>
 <p>
@@ -108,6 +84,16 @@ You have been invited to a game of Gotcha!
 
 </form>
 </p>
+
+<ul>
+<li><form action="PrettyStart" method="get">
+		<br> 
+		<br> <input type="submit" align="center" value="Home">
+
+	</form></li>
+
+
+</ul>
 
 </body>
 

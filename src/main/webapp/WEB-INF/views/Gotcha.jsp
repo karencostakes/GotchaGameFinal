@@ -22,21 +22,12 @@
 	<style>
 
 body
-{background-image: url("http://www.recettes-de-cuisines.com/wp-content/plugins/wp-o-matic/cache/7b51d_photodune-2487584-white-wood-background-m.jpg")
+{background-image: url("https://i.imgsafe.org/2fd91412db.png")
 
 
 }
 
-header, footer {exam
 
-    padding: .1em;
-    color: black;
-    background-color:  white;
-    clear: left;
-    text-align: left;
-    font-family: "courier new";
-font-size: 25px;
-}
 
 p {
 
@@ -46,13 +37,7 @@ font-family: "courier new";
 font-size: 30px;
 }
 
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}
+
 
 li {
     float: left;
@@ -82,6 +67,16 @@ li a:hover {
 
 
 </header>
+
+
+</header>
+<p>
+
+<h1>${targetremoved}</h1>
+<h1>${messagenewassignments}</h1>
+<h3>${winner}</h3>
+
+
 <ul>
 
 
@@ -97,16 +92,6 @@ li a:hover {
 
 
 </ul>
-
-</header>
-<p>
-
-<h1>${targetremoved}</h1>
-<h1>${messagenewassignments}</h1>
-<h3>${winner}</h3>
-
-
-</form>
 </p>
 
 </body>

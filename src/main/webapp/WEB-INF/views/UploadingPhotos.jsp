@@ -5,6 +5,44 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+	<style>
+
+body
+{background-image: url("https://i.imgsafe.org/2fd91412db.png")
+
+
+}
+
+
+
+p {
+
+color: black;
+text-align: center;
+font-family: "courier new";
+font-size: 30px;
+}
+
+
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-family: "courier new";
+}
+
+li a:hover {
+    background-color: #111;
+}
+</style>
+
 </head>
 <body>
 	<form method="POST" action="uploadFile" enctype="multipart/form-data">
@@ -26,6 +64,16 @@
 <input type = "submit"  value="GOTCHA!">
 
 </form>
+	<ul>
+
+<li><form action="PrettyStart" method="get">
+		<br> 
+		<br> <input type="submit" align="center" value="Home">
+
+	</form></li>
+    
+
+</ul>
 	
 	
 </body>

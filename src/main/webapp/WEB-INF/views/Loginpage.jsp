@@ -28,56 +28,41 @@
 	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 	crossorigin="anonymous"></script>
 
-<style>
-body {
-	background-image:
-		url("http://www.recettes-de-cuisines.com/wp-content/plugins/wp-o-matic/cache/7b51d_photodune-2487584-white-wood-background-m.jpg")
+	<style>
+
+body
+{background-image: url("https://i.imgsafe.org/2fd91412db.png")
+
+
 }
 
-header,footer {
-	exam padding: .1em;
-	color: black;
-	background-color: white;
-	clear: left;
-	text-align: left;
-	font-family: "courier new";
-	font-size: 25px;
-}
+
 
 p {
-	color: black;
-	text-align: center;
-	font-family: "courier new";
-	font-size: 30px;
+
+color: black;
+text-align: center;
+font-family: "courier new";
+font-size: 30px;
 }
 
-ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	background-color: #333;
-}
+
 
 li {
-	float: left;
+    float: left;
 }
 
 li a {
-	display: block;
-	color: white;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-	font-family: "courier new";
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-family: "courier new";
 }
 
 li a:hover {
-	background-color: #111;
-}
-
-form {
-	text-align: center;
+    background-color: #111;
 }
 </style>
 </head>
