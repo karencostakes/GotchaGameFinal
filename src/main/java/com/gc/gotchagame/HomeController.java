@@ -67,8 +67,14 @@ public class HomeController {
 
 		return "redirectPage";
 	}
+	
+	@RequestMapping(value = "PrettyStart", method = RequestMethod.GET)
+	public String TestingOurHomePage(HttpServletRequest request, Model model) {
 
-	@RequestMapping(value = "playerdashboard", method = RequestMethod.GET)
+		return "PrettyStart";
+	}
+
+	@RequestMapping(value = "loginmethod", method = RequestMethod.GET)
 	public String processSuccessfulLogin(HttpServletRequest request,
 			HttpServletResponse response, Model model) {
 		// user will go to login, enter username, and password and press login
@@ -94,7 +100,7 @@ public class HomeController {
 			Connection conn = DriverManager.getConnection(
 					"jdbc:mysql://localhost:3306/GameTestPlayerName", "root",
 					"admin");
-
+ 
 			String query1 = "INSERT INTO usernametable" + "(UserName) VALUES"
 					+ "(?)";
 
