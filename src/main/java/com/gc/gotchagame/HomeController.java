@@ -62,10 +62,10 @@ public class HomeController {
 		return "privacypolicy";
 	}
 
-	@RequestMapping(value = "redirectPage", method = RequestMethod.GET)
-	public String processRedirectPage(HttpServletRequest request, Model model) {
+	@RequestMapping(value = "Loginpage", method = RequestMethod.GET)
+	public String takeustotheloginpage(HttpServletRequest request, Model model) {
 
-		return "redirectPage";
+		return "Loginpage";
 	}
 	
 	@RequestMapping(value = "PrettyStart", method = RequestMethod.GET)
@@ -136,37 +136,7 @@ public class HomeController {
 		return "GameInvitations";
 	}
 
-	/*
-	 * @RequestMapping(value="TestingTextApi", method = RequestMethod.GET)
-	 * public String getWeather(Model model) {try {HttpClient http =
-	 * HttpClientBuilder.create().build();
-	 * 
-	 * //address that we want to call: I am going to access this website at this
-	 * port using this protocol HttpHost host = new HttpHost
-	 * ("https://messagebird-sms-gateway.p.mashape.com"); //which resource do
-	 * you want to obtain at this page HttpGet getPage = new HttpGet ("/sms");
-	 * //execute Http request and get the http response back HttpResponse resp =
-	 * http.execute(host, getPage);
-	 * 
-	 * String result = EntityUtils.toString(resp.getEntity());
-	 * model.addAttribute("pagedata", result);
-	 * 
-	 * 
-	 * HttpResponse<String> response = Unirest.post(
-	 * "https://messagebird-sms-gateway.p.mashape.com/sms?password=&username=")
-	 * .header("X-Mashape-Key", "<required>") .header("Content-Type",
-	 * "application/x-www-form-urlencoded") .header("Accept", "text/plain")
-	 * .field("body", "This is a gsm 7-bit test message.") .field("destination",
-	 * "31600000001,31600000002") .field("dlr_url",
-	 * "http://www.example.com/dlr-messagebird.php") .field("reference",
-	 * "268431687") .field("replacechars", false) .field("sender",
-	 * "MessageBird") .field("timestamp", 201308020025) .field("type", "normal")
-	 * .asString(); } catch (Exception e) {
-	 * 
-	 * return "errorpage";
-	 * 
-	 * } return "apitestsms"; }
-	 */
+	
 
 	@RequestMapping(value = "ActiveGameShowAssignment", method = RequestMethod.GET)
 	public String playerClicksonActiveGames(HttpServletRequest request,

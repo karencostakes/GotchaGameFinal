@@ -219,62 +219,80 @@ html, body {
 </head>
 <section class="container">
   <div class="section one">
-    <a href="http://google.com" class="no-underline">
+    <form action="Loginpage" method="get">
+      <input type="hidden" value="login">
+      </form> 
       <div class="mb_parallax_container" id="mb_parallax_one">
     </div>
     <div class="mb_parallax_overlay" id="mb_parallax_overlay_one">  
       </div>
     <div class="cont_title"><div class = "cont-responsive"></div>
+     
       <h1>LOG IN</h1>
+       <h3></h3></a>
+       <form action="Loginpage" method="get">
+      <input type="submit" value="login">
       <h3></h3></a>
+      </form>
     </div>
   </div>
 </div>
 
   <div class="section two">
-    <a href="http://google.com" class="no-underline"><div class="mb_parallax_container" id="mb_parallax_two">
+    <div class="mb_parallax_container" id="mb_parallax_two">
   <div class="mb_parallax_overlay" id="mb_parallax_overlay_two">
   </div>
           </div>
     <div class="cont_title"><div class = "cont-responsive"></div>
       <h1>CREATE</h1>
       <h3>a new game</h3>
+      <form action="GotchaGamesCreateGame" method="get">
+      <input type="submit" value="Create a Game">
+        </form>
       </a>
     </div>
   </div>
 
 <div class="section three">
-    <a href="http://google.com" class="no-underline"><div class="mb_parallax_container" id="mb_parallax_three">
+    <div class="mb_parallax_container" id="mb_parallax_three">
   <div class="mb_parallax_overlay" id="mb_parallax_overlay_three">
     </div>
       </div>
     <div class="cont_title"><div class = "cont-responsive"></div>
       <h1>ACCEPT</h1>
       <h3>your invitation</h3>
+       <form action="GameInvitationPage" method="get">
+      <input type="submit" value="Accept an Invite!">
+        </form>
       </a>
     </div>
   </div>
 
 <div class="section four">
-    <a href="http://google.com" class="no-underline"><div class="mb_parallax_container" id="mb_parallax_four">
+  <div class="mb_parallax_container" id="mb_parallax_four">
 <div class="mb_parallax_overlay" id="mb_parallax_overlay_four">
     </div>
       </div>   
   <div class="cont_title"><div class = "cont-responsive"></div>
      <h1>START GAME</h1>
-    
+     <form action="StartGamePageTest" method="get">
+      <input type="submit" value="Start a Game!">
+        </form>
       </a>
     </div>
   </div>
 
 <div class="section five">
-    <a href="http://google.com" class="no-underline"><div class="mb_parallax_container" id="mb_parallax_five">
+  <div class="mb_parallax_container" id="mb_parallax_five">
 <div class="mb_parallax_overlay" id="mb_parallax_overlay_five">
     </div>
       </div>     
   <div class="cont_title"><div class = "cont-responsive"></div>
       <h1>MISSION</h1>
     <h3>Check for updates</h3></a> 
+    <form action="ActiveGameShowAssignment" method="get">
+      <input type="submit" value="Your Mission!">
+        </form>
     </div>
   </div>
 </section>
