@@ -31,6 +31,7 @@
           console.log('LastName: ' + profile.getLastName());
           console.log('Image URL: ' + profile.getImageUrl());
           console.log('Email: ' + profile.getEmail());
+        	
         }
       };
     </script>
