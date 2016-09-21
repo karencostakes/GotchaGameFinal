@@ -1,0 +1,179 @@
+@import 'https://fonts.googleapis.com/css?family=Muli';
+
+html, body{
+  margin: 0;
+  max-width: 100%;
+  height: 100%;
+      text-decoration: none;
+
+}
+
+.mb_parallax_container {
+  /*height: 10vh;*/
+  width: span;
+  /*border-bottom: 10px solid black;*/
+  padding-top: 30vh;
+  background-attachment: absolute;
+  background-size: cover;
+  background-repeat: no-repeat;
+      text-decoration: none;
+
+}
+
+.mb_parallax_overlay {
+  padding-top: 20vh;
+  background-attachment: variable;
+  height: 25vh;
+  width: span;
+  margin: auto;
+  background-color: white;
+  opacity: .65;
+  padding-top: 20vh;
+  text-decoration: none;
+
+}
+
+.no-underline {
+    text-decoration: none;    
+}
+
+.cont-responsive {
+    position: relative;
+    width: 100px;
+    height: 100px;
+      text-decoration: none;
+
+}
+
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  text-decoration: none;
+
+
+  &:hover{
+    & > .section{
+      filter: brightness(22%);
+    }
+    & > .section:hover{
+      filter: brightness(100%);
+    }
+  }
+  
+  .section{
+    flex-grow: 1;
+    position: relative;
+    height: 100%;
+    transition: all 0.4s;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    text-align: center;
+    flex: 1;
+    text-decoration: none;
+
+    
+    .cont_title{
+      position:absolute;
+      /*position:absolute;*/
+      top: -20%;
+      /*left: 1%;*/
+      margin: auto;
+      width: 100%;
+      height: 150px;
+      text-align: center;
+      margin-top: 40vh;
+      text-decoration: none;
+
+      h1{
+        text-transform: appear;
+        color: black;
+        font-family: 'Muli', sans-serif;
+        text-shadow: 3px 5px 3px rgba(0,0,0,0.5);
+        font-size: 3vw;
+        margin: 0;
+        transition: font-size 0.3s;
+        vertical-align: middle;
+        text-decoration: none;
+
+      }
+      h3{
+        text-transform: uppercase;
+        font-family: 'Muli', sans-serif;
+        font-size: 2vw;
+        transition: all 0.3s;
+        color: black;
+        text-decoration: none;
+
+      }
+      
+    }
+    
+    .cont_desc{
+      position: relative;
+      display: block;
+      text-align: center;
+      width: 60%;
+      height: auto;
+      margin: auto;
+      opacity: 0;
+      transition: opacity 0.4s;
+      padding-top: 20px;
+      text-decoration: none;
+      p{
+        margin: 0;
+        font-family: 'Muli', sans-serif;
+        color: black;
+        font-size: 25px;
+        text-decoration: none;
+      }
+    }
+    
+    &:hover{
+      flex-grow: 5.0;
+      transition: flex 0.4s;
+      
+      & > .cont_title h1{
+        font-size: 10vw;
+        transition: font-size 0.4s;
+            text-decoration: none;
+
+      }
+      
+      & > .cont_title h3{
+        font-size: 3vw;
+        transition: all 0.4s;
+            text-decoration: none;
+
+      }
+      
+      & > .cont_desc{
+        opacity: 1;
+        transition-delay: 1s;
+        transition: opacity 0.8s;
+            text-decoration: none;
+
+      }
+    }
+    &:nth-child(1){
+background: url("https://i.imgsafe.org/295b1a77c6.jpg")center;
+    }
+    
+    &:nth-child(2){
+      background: url("https://i.imgsafe.org/299688872d.jpg") left;
+    }
+    &:nth-child(3){
+      background: url("https://i.imgsafe.org/295b3da2ac.jpg") left;
+    }
+    &:nth-child(4){
+      background: url("https://i.imgsafe.org/2f0bf8a686.jpg") center;
+    }
+    &:nth-child(5){
+      background: url("https://i.imgsafe.org/1e7471ba6e.jpg
+") center;
+    }
+  }
+}
