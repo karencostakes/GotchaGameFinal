@@ -1272,7 +1272,7 @@ public class HomeController {
 
 
 
-	@RequestMapping(value = "photos", method = RequestMethod.GET)
+	@RequestMapping(value = "Outdoor2", method = RequestMethod.GET)
 
 	public String processOutdoor(HttpServletRequest request, Model model) {
 
@@ -1353,7 +1353,7 @@ public class HomeController {
 
 		}
 
-		return "Photos";
+		return "Outdoor2";
 
 	}
 
