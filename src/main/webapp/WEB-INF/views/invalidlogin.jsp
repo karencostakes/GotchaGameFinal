@@ -83,18 +83,14 @@ li a:hover {
 	<br>
 	<br>
 	<p>
-		<b>Gotcha: Got or be Got.</b> <br> Players are assigned a target
-		(another player), an item, and a location. <br> Get points by
-		getting your target to hold the specified item at the specified
-		location and posting the picture. <br> Win the game by being the
-		last player standing. <br>
+		<b>The username or password was incorrect.  Please try again if you have an account. <br>
 
 	</p>
 	<p>
-	<form action="validatelogin" method="get">
+	<form action="loginmethod" method="get">
 		<br> email <input type="text" align="center" name="username">
 		<br> password <input type="text" align="center" name="password">
-		<br> <input type="submit" align="center" value="Log In">
+		<br> <input type="submit" align="center" value="validatelogin">
 
 	</form>
 	
@@ -116,16 +112,7 @@ li a:hover {
 		<br><input type="submit" align="center" value="New User">
 </p>
 	</form>	
-	 <b> Click below to read our privacy policy.</b>
-			
-			<form action="privacy policy" method="get">
-		
-		<br><input type="submit" align="center" value="Privacy Policy">
-</p>
-	</form>	
-		</form>	
-	<p>
-	
+	 
 	
 
 

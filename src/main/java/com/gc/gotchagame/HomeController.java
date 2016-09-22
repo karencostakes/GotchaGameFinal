@@ -114,15 +114,86 @@ public class HomeController {
 			System.err.println(e.getMessage());
 		}
 
-		return "playerdashboard";
+		return "PrettyStart";
 	}
 
-	@RequestMapping(value = "Loginapi", method = RequestMethod.GET)
-	public String Loginthroughapi(HttpServletRequest request, Model model) {
 
-		return "Loginapi";
+
+	@RequestMapping(value = "validatelogin", method = RequestMethod.GET)
+	public String validatelogin(HttpServletRequest request, Model model) {
+		
+		 {
+				// user will go to login, enter username and password and press login
+				// if successful, we will go to Pretty Start
+			 //validate string will determine which view we go to
+			 String validate = "";
+				try {
+					
+					String userNameSession = request.getParameter("username");
+					model.addAttribute("username", userNameSession);
+					System.out.println(userNameSession);
+					String password = request.getParameter("password");
+					System.out.println(password);
+					HttpSession session = request.getSession();
+					session.setAttribute("userNameSession", userNameSession);
+
+					Class.forName("com.mysql.jdbc.Driver");
+					// This is connecting to our RDBS. Deeann is working on changing the
+					// password.
+					/*
+					 * Connection conn = DriverManager.getConnection(
+					 * "jdbc:mysql://aaobnl8nl3m402.cmwzwe1wsipz.us-east-1.rds.amazonaws.com:3306/GameTestPlayerName"
+					 * , "DUhlarik", "PASSWORD");
+					 */
+
+					Connection conn = DriverManager.getConnection(
+							"jdbc:mysql://localhost:3306/GameTestPlayerName", "root",
+							"admin");
+		 
+					String query1 = "Select Password From usernametable where UserName=?";
+					
+					java.sql.PreparedStatement ps = conn.prepareStatement(query1);
+					ps.setString(1, userNameSession);
+					System.out.println(ps);
+
+					// process the results
+					ResultSet rs = ps.executeQuery();
+
+					String passwordcheck = "";
+
+					while (rs.next()) {
+						passwordcheck = rs.getString(1);
+						System.out.println(passwordcheck);
+					}
+
+					if (password.equalsIgnoreCase(passwordcheck))
+					{
+						validate = "true";
+					}
+					else
+					{
+						validate = "false";
+					}
+
+				} catch (Exception e) {
+					System.err.println("Got an exception!");
+					System.err.println(e.getMessage());
+				}
+				
+				if (validate.equalsIgnoreCase("true")) {
+					return "PrettyStart";
+				}
+
+				else {
+					return "invalidlogin";
+				}
+				
+		 }
+				//if (validate.equalsIgnoreCase("true"))
+				//{
+
 	}
-
+	
 	@RequestMapping(value = "GameMakerInvitePlayers", method = RequestMethod.GET)
 	public String InvitePlayersClick(HttpServletRequest request, Model model) {
 
