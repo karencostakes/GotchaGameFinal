@@ -1,5 +1,6 @@
 package com.gc.gotchagame;
-
+import java.io.StringReader;
+import java.io.StringReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -13,6 +14,8 @@ import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
@@ -28,6 +31,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.SessionScope;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 
 /**
  * Handles requests for the application home page.
@@ -1249,4 +1255,100 @@ public class HomeController {
 
 		return "YouStartedAGame";
 	}
+
+
+
+	@RequestMapping(value = "photos", method = RequestMethod.GET)
+
+	public String processOutdoor(HttpServletRequest request, Model model) {
+
+		try {
+
+			// create object type httpClient call http
+
+			HttpClient http = HttpClientBuilder.create().build();
+
+			// https://www.pinterest.com/<username>/<board>.rss
+
+			// https://www.pinterest.com/parkerlondonr/sample/
+
+			HttpHost host = new HttpHost("www.pinterest.com", 443, "https");
+
+			// HttpGet getPage = new HttpGet("/parkerlondonr/Sample.rss");
+
+			// HttpGet getPage = new
+			// HttpGet("/parkerlondonr/indoorcraftsage3to6.rss");
+
+			HttpGet getPage = new HttpGet("/karencostakes/peopleplayinggames.rss");
+
+			// execute the http request and get the http response
+
+			HttpResponse resp = http.execute(host, getPage);
+
+			// Way to display data using DOM(document object model) tree format
+
+			String result = "";
+
+			String xmlString = EntityUtils.toString(resp.getEntity());
+
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+
+			DocumentBuilder db = factory.newDocumentBuilder();
+
+			InputSource inStream = new InputSource();
+
+			inStream.setCharacterStream(new StringReader(xmlString));
+
+			Document doc = db.parse(inStream);
+
+			String outdoorInfo = "empty";
+			String favoritesTag = "";
+
+			NodeList nl = doc.getElementsByTagName("description");
+
+			// System.out.println("BeforeLoop "+ nl.getLength());
+
+			for (int i = 1; i < nl.getLength(); i++) {
+
+				System.out.println("inLoop " + nl.item(i).getFirstChild().getNodeValue().trim());
+
+				org.w3c.dom.Element nameElement = (org.w3c.dom.Element) nl.item(i);
+
+				outdoorInfo = nameElement.getFirstChild().getNodeValue().trim();
+				
+				favoritesTag = parseFavsFrom(outdoorInfo);
+				
+				result += outdoorInfo + "&nbsp&nbsp&nbsp&nbsp&nbsp<a href='addFavorite?pin="+favoritesTag+"'>Add To Favorites</a>" + "<br>";
+				
+				
+				
+				
+			}
+
+			model.addAttribute("pageData", result);
+
+		}
+
+		catch (Exception e)
+
+		{
+
+			model.addAttribute("Error", e.getMessage());
+
+			return "errorpage";
+
+		}
+
+		return "Photos";
+
+	}
+
+	private String parseFavsFrom(String outdoorInfo) {
+		int beginIndex =14;
+		int endIndex=32;
+		return outdoorInfo.substring(beginIndex,endIndex);
+		
+	}
+
 }
+
