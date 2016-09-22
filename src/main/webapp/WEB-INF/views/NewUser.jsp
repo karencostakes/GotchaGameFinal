@@ -95,57 +95,14 @@ li a:hover {
 		<br> username <input type="text" align="center" name="username">
 		<br> password <input type="text" align="center" name="password">
 		<br> gotchaname <input type="text" align="center" name="Gotcha name">
-		<br> <input type="submit" align="center" value="login">
+		<br> <input type="submit" align="center" value="Log In">
 
 	</form>
 	
-	
-	<form action="Loginpage" method="get">
 
-		<br> <input type="hidden" value="login">
-
-	</form>
-	
-	<%
-   String userName = request.getParameter( "username" );
-   //I am setting the userName as sessionUserName
-   	request.getSession().setAttribute("sessionUserName", userName);
-
-   //when I call this I will use the command <%= session.getAttribute( "sessionUserName" ) %>
-    String gotchaname = request.getParameter( "gotchaname");
-   //I am setting the userName as sessionUserName
-   	request.getSession().setAttribute("sessionUserName", userName);
-   
-%>
-	
 	<p>
-	<b> New User?  Click below to create an account.</b>
-	<form action="NewUser" method="get">
-		
-		<br><input type="submit" align="center" value="New User">
-</p>
-	</form>	
-	 <b> Click below to read our privacy policy.</b>
-			
-			<form action="privacy policy" method="get">
-		
-		<br><input type="submit" align="center" value="Privacy Policy">
-</p>
-	</form>	
-		</form>	
-	<p>
-	 <b> If you do not agree to Instagram's Login Policy, please click below.</b>
-			
-			<form action="redirectPage" method="get">
-		
-		<br><input type="submit" align="center" value="Login Policy">
-</p>
-	</form>	
 	
-
-
-	</p>
-
+	
 
 </body>
 

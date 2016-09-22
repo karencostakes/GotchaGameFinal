@@ -87,10 +87,10 @@ li a:hover {
 
 	</p>
 	<p>
-	<form action="loginmethod" method="get">
+	<form action="validatelogin" method="get">
 		<br> email <input type="text" align="center" name="username">
 		<br> password <input type="text" align="center" name="password">
-		<br> <input type="submit" align="center" value="validatelogin">
+		<br> <input type="submit" align="center" value="Log In">
 
 	</form>
 	

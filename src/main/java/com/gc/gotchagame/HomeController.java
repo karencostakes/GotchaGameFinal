@@ -68,23 +68,39 @@ public class HomeController {
 		return "Loginpage";
 	}
 	
+	@RequestMapping(value = "Photos", method = RequestMethod.GET)
+	public String Photos(HttpServletRequest request, Model model) {
+
+		return "Photos";
+	}
+	
 	@RequestMapping(value = "PrettyStart", method = RequestMethod.GET)
 	public String TestingOurHomePage(HttpServletRequest request, Model model) {
 
 		return "PrettyStart";
 	}
+	
+	@RequestMapping(value = "NewUser", method = RequestMethod.GET)
+	public String Takesustonewuserform(HttpServletRequest request, Model model) {
+
+		return "NewUser";
+	}
+	
 
 	@RequestMapping(value = "loginmethod", method = RequestMethod.GET)
 	public String processSuccessfulLogin(HttpServletRequest request,
 			HttpServletResponse response, Model model) {
-		// user will go to login, enter username, and password and press login
-		// (with playerdashboard value). if successful, we will go to
-		// playerdashboard
-		// we will dump username into UserNameTable as UserName
+		// new user will go to login, enter username, gotcha name and password and press login
+		// we will put this information in username table
 		try {
 			String userNameSession = request.getParameter("username");
+			
+			String password = request.getParameter("password");
+			//WE ARE GETTING NULL HERE??? UNSURE OF WHY?
+			String gotchaname = request.getParameter("gotchaname");
+			
 			model.addAttribute("username", userNameSession);
-
+			System.out.println(gotchaname + password + userNameSession);
 			HttpSession session = request.getSession();
 			session.setAttribute("userNameSession", userNameSession);
 
@@ -101,12 +117,14 @@ public class HomeController {
 					"jdbc:mysql://localhost:3306/GameTestPlayerName", "root",
 					"admin");
  
-			String query1 = "INSERT INTO usernametable" + "(UserName) VALUES"
-					+ "(?)";
+			String query1 = "INSERT INTO usernametable" + "(UserName, Password, GotchaName) VALUES"
+					+ "(?,?,?)";
 
 			java.sql.PreparedStatement updateGame = conn
 					.prepareStatement(query1);
 			updateGame.setString(1, userNameSession);
+			updateGame.setString(2, password);
+			updateGame.setString(3, gotchaname);
 			updateGame.execute();
 
 		} catch (Exception e) {
