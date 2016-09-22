@@ -235,16 +235,16 @@ public class HomeController {
 
 	@RequestMapping(value = "ActiveGameShowAssignment", method = RequestMethod.GET)
 	public String playerClicksonActiveGames(HttpServletRequest request,
-			HttpServletResponse response, Model model) {
+			HttpServletResponse response, Model model) {String activegame = "";
 		// when player clicks on active game, this page will show an assignment
 		// for the specific user if the PlayerStatus is active, GameStatus is
 		// active.
-		{
+		{ 
 			try {// Step 1: game name associated with userNameSession
 				HttpSession session1 = request.getSession();
 				String userNameSession = (String) session1
 						.getAttribute("userNameSession");
-				model.addAttribute("username", userNameSession);
+				model.addAttribute("username", userNameSession + " Mission:");
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection conn = DriverManager.getConnection(
 						"jdbc:mysql://localhost:3306/GameTestPlayerName",
@@ -371,6 +371,8 @@ public class HomeController {
 
 					model.addAttribute("location", "Location: " + location);
 					System.out.println(location);
+					
+					activegame = "true";
 
 					/*
 					 * query =
@@ -401,6 +403,7 @@ public class HomeController {
 				else {
 					String messageNoAssignment = "You have no current games";
 					model.addAttribute("nullmessage", messageNoAssignment);
+					activegame = "false";
 
 				}
 			}
@@ -410,8 +413,19 @@ public class HomeController {
 				System.err.println(e.getMessage());
 			}
 
+			if (activegame.equalsIgnoreCase("true"))
+			{
+			
 			return "ActiveGames";
-		}
+					
+			}	
+			
+			else
+			{
+				return "NoGo";
+		
+			}
+			}
 	}
 
 	@RequestMapping(value = "GotchaShuffleAssignments", method = RequestMethod.GET)

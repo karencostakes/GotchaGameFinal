@@ -44,19 +44,14 @@ li a:hover {
 </style>
 
 </head>
-<body>
-	<form method="POST" action="uploadFile" enctype="multipart/form-data">
-		File to upload: <input type="file" name="file">
- 
-		Name: <input type="text" name="name">
- 
- 
-		<input type="submit" value="Upload"> Press here to upload the file!
-	
-	<br>
+
 	<br>
 	
-	<h1>AFTER YOU HAVE UPLOADED YOUR GOTCHA PROOF, Click Gotcha! Button to confirm your Gotcha!</h1>
+	<h1>Congratulations.  Click Gotcha Button to confirm your Gotcha! 
+	Remember, your friends and Gotcha Creators love because you never
+	click Gotcha! unless you really got a Gotcha!
+
+	</h1>
 	</form>	
 	
 	

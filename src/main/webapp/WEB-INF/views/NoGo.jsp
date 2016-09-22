@@ -72,18 +72,10 @@ li a:hover {
 
 <p>
 
-<h3>${username}</h3>
-<h3>${target} </h3>
 
-<h3>${item} </h3>
-
-<h3>${location} </h3>
 <h1>${nullmessage} </h1>
 
-<form action= "GotchaGoToUploadPhotos" method ="get">
-<input type = "submit"  value="GOTCHA!">
 
-</form>
 
 
 <li><form action="PrettyStart" method="get">

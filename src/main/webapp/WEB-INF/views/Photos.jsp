@@ -50,5 +50,15 @@ Obstacle course: <input type="checkbox" id="www.obstaclecourse.com" name="Obstac
 Mars Mission: <input type="checkbox" id="www.marsmission.com" name="MarsMission">
 Ice Block Treasure Hunt: <input type="checkbox" id="www.iceblock.com" name="IceBlock">
 
+<body>
+	<form method="POST" action="uploadFile" enctype="multipart/form-data">
+		File to upload: <input type="file" name="file">
+ 
+		Name: <input type="text" name="name">
+ 
+ 
+		<input type="submit" value="Upload"> Press here to upload the file!
+	
+	<br>
 </body>
 </html>
